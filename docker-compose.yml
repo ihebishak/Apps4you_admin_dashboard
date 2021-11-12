@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+  apps4you_dashboard:
+    container_name: apps4you_dashboard
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '4211:4200'

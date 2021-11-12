@@ -1,0 +1,99 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+    <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+        <h2 *ngIf="form.get('title').value" class="headline m-0" fxFlex="auto">
+            {{ form.get("title").value }}
+        </h2>
+        <h2 *ngIf="!form.get('title').value" class="headline m-0" fxFlex="auto">
+            New Opportunity
+        </h2>
+
+        <button [matMenuTriggerFor]="settingsMenu" class="text-secondary" mat-icon-button type="button">
+      <mat-icon [icIcon]="icMoreVert"></mat-icon>
+    </button>
+
+        <button class="tezxt-secondary" mat-dialog-close mat-icon-button type="button">
+      <mat-icon [icIcon]="icClose"></mat-icon>
+    </button>
+    </div>
+
+    <mat-divider class="-mx-6 text-border"></mat-divider>
+
+    <mat-dialog-content fxLayout="column">
+        <div class="flex flex-col sm:flex-row">
+            <mat-form-field class="mt-6 flex-auto">
+                <mat-label>Title</mat-label>
+                <input cdkFocusInitial formControlName="title" matInput />
+                <mat-icon [icIcon]="icTitle" class="mr-3" matPrefix></mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="sm:mt-6 sm:ml-6 flex-auto">
+                <mat-label>Date</mat-label>
+                <input type="date" formControlName="date" matInput />
+                <mat-icon [icIcon]="icDateRange" class="mr-3" matPrefix></mat-icon>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field class="flex-auto">
+            <mat-label>Location</mat-label>
+            <input formControlName="location" matInput />
+            <mat-icon [icIcon]="icLocationOn" class="mr-3" matPrefix></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label>Short Description</mat-label>
+            <input formControlName="sh_description" matInput />
+
+            <mat-icon [icIcon]="icDescription" class="mr-3" matPrefix></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+            <mat-icon [icIcon]="icDescription" class="mr-3" matPrefix></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label>Requirements</mat-label>
+            <textarea formControlName="requirements" matInput></textarea>
+            <mat-icon [icIcon]="icPlaylistAddCheck" class="mr-3" matPrefix></mat-icon>
+        </mat-form-field>
+        <mat-form-field class="flex-auto">
+            <mat-label>Technologies</mat-label>
+            <textarea formControlName="technologies" matInput></textarea>
+            <mat-icon [icIcon]="icLaptop" class="mr-3" matPrefix></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="flex-auto">
+            <mat-label>Image Location</mat-label>
+            <input formControlName="img_location" matInput />
+            <mat-icon [icIcon]="icImage" class="mr-3" matPrefix></mat-icon>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close type="button">CANCEL</button>
+        <button *ngIf="isCreateMode()" color="primary" mat-button type="submit">
+      CREATE OPPORTUNITY
+    </button>
+        <button *ngIf="isUpdateMode()" color="primary" mat-button type="submit">
+      UPDATE OPPORTUNITY
+    </button>
+    </mat-dialog-actions>
+</form>
+
+<mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
+    <button mat-menu-item>
+    <mat-icon [icIcon]="icPrint"></mat-icon>
+    <span>Print</span>
+  </button>
+
+    <button mat-menu-item>
+    <mat-icon [icIcon]="icDownload"></mat-icon>
+    <span>Export</span>
+  </button>
+
+    <button mat-menu-item>
+    <mat-icon [icIcon]="icDelete"></mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>
